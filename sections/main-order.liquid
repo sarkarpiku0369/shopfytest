@@ -21,7 +21,7 @@
     </symbol>
   </svg>
   <div>
-    <h1 class="customer__title">{{ 'customer.account.title' | t }}</h1>
+    <h1 class="customer__title">{{ 'customer.account.title' | t }} test</h1>
     <a href="{{ routes.account_url }}">{{ 'customer.account.return' | t }}</a>
   </div>
 
@@ -50,13 +50,7 @@
         <tbody role="rowgroup">
           {%- for line_item in order.line_items -%}
             <tr role="row">
-              <td
-                id="Row{{ line_item.key }}"
-                headers="ColumnProduct"
-                role="rowheader"
-                scope="row"
-                data-label="{{ 'customer.order.product' | t }}"
-              >
+              <td id="Row{{ line_item.key }}" headers="ColumnProduct" role="rowheader" scope="row" data-label="{{ 'customer.order.product' | t }}">
                 <div>
                   {%- if line_item.url != blank -%}
                     <a href="{{ line_item.url }}">{{ line_item.title }}</a>
@@ -99,7 +93,7 @@
                       {%- for discount_allocation in line_item.line_level_discount_allocations -%}
                         <li>
                           <svg aria-hidden="true" focusable="false" viewBox="0 0 12 12">
-                            <use href="#icon-discount" />
+                            <use href="#icon-discount"/>
                           </svg>
                           {{- discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money -}})
                         </li>
@@ -112,31 +106,25 @@
                       {%- assign created_at = line_item.fulfillment.created_at | time_tag: format: 'date' -%}
                       <span>{{ 'customer.order.fulfilled_at_html' | t: date: created_at }}</span>
 
-                        {%- if line_item.fulfillment.tracking_url -%}
-                          <a href="{{ line_item.fulfillment.tracking_url }}">
-                            {{ 'customer.order.track_shipment' | t }}
-                          </a>
+                      {%- if line_item.fulfillment.tracking_url -%}
+                        <a href="{{ line_item.fulfillment.tracking_url }}">
+                          {{ 'customer.order.track_shipment' | t }}
+                        </a>
+                      {%- endif -%}
+                      <span>
+                        {{ line_item.fulfillment.tracking_company }}
+                        {%- if line_item.fulfillment.tracking_number -%}
+                          #{{ line_item.fulfillment.tracking_number }}
                         {%- endif -%}
-                        <span>
-                          {{ line_item.fulfillment.tracking_company }}
-                          {%- if line_item.fulfillment.tracking_number -%} #{{ line_item.fulfillment.tracking_number }} {%- endif -%}
-                        </span>
+                      </span>
                     </div>
                   {%- endif -%}
                 </div>
               </td>
-              <td
-                headers="Row{{ line_item.key }} ColumnSku"
-                role="cell"
-                data-label="{{ 'customer.order.sku' | t }}"
-              >
+              <td headers="Row{{ line_item.key }} ColumnSku" role="cell" data-label="{{ 'customer.order.sku' | t }}">
                 {{ line_item.sku }}
               </td>
-              <td
-                headers="Row{{ line_item.key }} ColumnPrice"
-                role="cell"
-                data-label="{{ 'customer.order.price' | t }}"
-              >
+              <td headers="Row{{ line_item.key }} ColumnPrice" role="cell" data-label="{{ 'customer.order.price' | t }}">
                 {%- if line_item.original_price != line_item.final_price or line_item.unit_price_measurement -%}
                   <dl>
                     {%- if line_item.original_price != line_item.final_price -%}
@@ -167,7 +155,8 @@
                       <dd class="unit-price">
                         <span>
                           {%- capture unit_price_separator -%}
-                            <span aria-hidden="true">/</span><span class="visually-hidden">{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+                            <span aria-hidden="true">/</span>
+                            <span class="visually-hidden">{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
                           {%- endcapture -%}
                           {%- capture unit_price_base_unit -%}
                             {%- if line_item.unit_price_measurement.reference_value != 1 -%}
@@ -175,7 +164,8 @@
                             {%- endif -%}
                             {{ line_item.unit_price_measurement.reference_unit }}
                           {%- endcapture -%}
-                          <span data-unit-price>{{ line_item.unit_price | money }}</span>{{- unit_price_separator -}}{{- unit_price_base_unit -}}
+                          <span data-unit-price>{{ line_item.unit_price | money }}</span>
+                          {{- unit_price_separator -}}{{- unit_price_base_unit -}}
                         </span>
                       </dd>
                     {%- endif -%}
@@ -184,18 +174,10 @@
                   <span>{{ line_item.final_price | money }}</span>
                 {%- endif -%}
               </td>
-              <td
-                headers="Row{{ line_item.key }} ColumnQuantity"
-                role="cell"
-                data-label="{{ 'customer.order.quantity' | t }}"
-              >
+              <td headers="Row{{ line_item.key }} ColumnQuantity" role="cell" data-label="{{ 'customer.order.quantity' | t }}">
                 {{ line_item.quantity }}
               </td>
-              <td
-                headers="Row{{ line_item.key }} ColumnTotal"
-                role="cell"
-                data-label="{{ 'customer.order.total' | t }}"
-              >
+              <td headers="Row{{ line_item.key }} ColumnTotal" role="cell" data-label="{{ 'customer.order.total' | t }}">
                 {%- if line_item.original_line_price != line_item.final_line_price -%}
                   <dl>
                     <dt>
@@ -232,7 +214,7 @@
                   {{ 'customer.order.discount' | t }}
                   <span class="cart-discount">
                     <svg aria-hidden="true" focusable="false" viewBox="0 0 12 12">
-                      <use href="#icon-discount" />
+                      <use href="#icon-discount"/>
                     </svg>
                     {{- discount_application.title -}}
                   </span>
@@ -242,7 +224,7 @@
                     <span>-{{ discount_application.total_allocated_amount | money }}</span>
                     <span class="cart-discount">
                       <svg aria-hidden="true" focusable="false" viewBox="0 0 12 12">
-                        <use href="#icon-discount" />
+                        <use href="#icon-discount"/>
                       </svg>
                       {{- discount_application.title -}}
                     </span>
@@ -298,33 +280,31 @@
 </div>
 
 {% schema %}
-{
-  "name": "t:sections.main-order.name",
-  "settings": [
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
-    }
-  ]
-}
+  {
+    "name": "t:sections.main-order.name",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      }
+    ]
+  }
 {% endschema %}
