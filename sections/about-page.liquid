@@ -1,6 +1,7 @@
-{% if section.settings.showhide %}
+{%- if condition -%}
     <div> {{section.settings.about-title}} </div>
-{% endif %}
+{%- endif -%}
+
 {% schema %}
 {
     "name": "Section Name",
