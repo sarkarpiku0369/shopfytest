@@ -1,6 +1,14 @@
+<div> {{section.settings.about-title}} </div>
 {% schema %}
 {
     "name": "Section Name",
-    "settings" :[]
+    "settings" :[
+        {
+            "type":"text",
+            "id":"about-title",
+            "label" : "About Title",
+            "default":"About US"
+        }
+    ]
 }
 {% endschema %}
