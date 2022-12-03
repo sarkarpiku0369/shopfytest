@@ -210,6 +210,12 @@
         "settings": {
           "color_scheme": "background-1"
         }
+      },
+      "about-page": {
+        "type": "about-page",
+        "settings": {
+          "about-title": "My Custom Test"
+        }
       }
     },
     "content_for_index": [
