@@ -1,4 +1,4 @@
-{%- if section.settings.showhide -%}
+{%- if section.settings.about-title -%}
     <div> {{section.settings.about-title}} </div>
 {%- endif -%}
 
@@ -11,12 +11,6 @@
             "id":"about-title",
             "label" : "About Title",
             "default":"About US"
-        },
-        {
-            "type":"checkbox",
-            "id":"showhide",
-            "label" : "Enable The Text",
-            "default" :true
         }
     ]
 }
